@@ -1,4 +1,253 @@
-<h1>Hello Machii DevOps 🔥</h1>
-<h2>welcome to our devops page<h2>
-<h3>hello<h3>
-<h3>Welcome<h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save Plants</title>
+
+<style>
+:root {
+  --green: #2ecc71;
+  --dark: #145a32;
+  --light: #eafaf1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--light);
+  color: #333;
+}
+
+/* Navbar */
+nav {
+  background: var(--dark);
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 24px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+/* Hero */
+.hero {
+  height: 90vh;
+  background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+  url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e") center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero h2 {
+  font-size: 50px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.hero button {
+  padding: 12px 25px;
+  background: var(--green);
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* Sections */
+section {
+  padding: 60px 10%;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1);
+  transition: transform .3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* Counter */
+.counter {
+  background: var(--green);
+  color: white;
+  text-align: center;
+  padding: 50px 10%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+}
+
+.counter h3 {
+  font-size: 40px;
+}
+
+/* Form */
+form {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  background: var(--green);
+  color: white;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>🌿 Save Plants</h1>
+  <div>
+    <a href="#about">About</a>
+    <a href="#impact">Impact</a>
+    <a href="#join">Join</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h2>Save Trees, Save Life</h2>
+    <p>Plants are the lungs of the Earth. Protect them today.</p>
+    <button onclick="scrollToJoin()">Join Movement</button>
+  </div>
+</section>
+
+<section id="about">
+  <div class="title">
+    <h2>Why Plants Matter</h2>
+  </div>
+  <div class="cards">
+    <div class="card">🌱 Produce Oxygen & Reduce Pollution</div>
+    <div class="card">🌍 Balance Climate & Temperature</div>
+    <div class="card">🐦 Protect Wildlife & Ecosystems</div>
+  </div>
+</section>
+
+<div class="counter" id="impact">
+  <div>
+    <h3 class="count" data-target="50000">0</h3>
+    <p>Trees Saved</p>
+  </div>
+  <div>
+    <h3 class="count" data-target="120">0</h3>
+    <p>Countries</p>
+  </div>
+  <div>
+    <h3 class="count" data-target="1000000">0</h3>
+    <p>People Joined</p>
+  </div>
+</div>
+
+<section id="join">
+  <div class="title">
+    <h2>Join the Green Movement</h2>
+  </div>
+  <form onsubmit="submitForm(event)">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <textarea rows="4" placeholder="Why do you care about plants?"></textarea>
+    <button>Join Now</button>
+  </form>
+</section>
+
+<footer>
+  © 2025 Save Plants | Go Green 🌱
+</footer>
+
+<script>
+/* Scroll */
+function scrollToJoin() {
+  document.getElementById("join").scrollIntoView({ behavior: "smooth" });
+}
+
+/* Counter Animation */
+const counters = document.querySelectorAll(".count");
+counters.forEach(counter => {
+  let start = 0;
+  const target = +counter.dataset.target;
+  const speed = target / 100;
+
+  const update = () => {
+    start += speed;
+    if (start < target) {
+      counter.innerText = Math.floor(start);
+      requestAnimationFrame(update);
+    } else {
+      counter.innerText = target;
+    }
+  };
+  update();
+});
+
+/* Form */
+function submitForm(e) {
+  e.preventDefault();
+  alert("Thank you for supporting Save Plants 🌱");
+}
+</script>
+
+</body>
+</html>
+
